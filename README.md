@@ -19,11 +19,11 @@ Este projeto é um estudo sobre o uso do **Result Pattern** para evitar exceçõ
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/seu-usuario/result-pattern-study.git
+   git clone https://github.com/matheusgnogueira/result-pattern.git
    ```
 2. Acesse a pasta do projeto:
    ```sh
-   cd result-pattern-study
+   cd result-pattern
    ```
 3. Restaure os pacotes:
    ```sh
