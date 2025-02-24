@@ -1,6 +1,9 @@
-@ResultPattern_HostAddress = http://localhost:5217
+@Host = http://localhost:5217
 
-GET {{ResultPattern_HostAddress}}/weatherforecast/
+POST {{Host}}/cars
 Accept: application/json
+Content-Type: application/json
 
-###
+{
+  "name": "Merrari"
+}

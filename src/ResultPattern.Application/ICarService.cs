@@ -1,7 +1,10 @@
-﻿namespace ResultPattern.Application
+﻿using OneOf;
+using ResultPattern.Application.Error;
+
+namespace ResultPattern.Application
 {
     public interface ICarService
     {
-        Task<Car> AddCar(string name, CancellationToken ct);
+        Task<OneOf<Car, AppError>> AddCar(string name, CancellationToken ct);
     }
 }

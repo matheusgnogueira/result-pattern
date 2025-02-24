@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using OneOf.Types;
 using ResultPattern.Application;
+using ResultPattern.Application.Error;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,8 +22,17 @@ app.UseHttpsRedirection();
 
 app.MapPost("/cars", async ([FromBody] RegisterCarRequest req, ICarService service, CancellationToken ct = default) =>
 {
-    var car = await service.AddCar(req.Name, ct);
-    return Results.Created($"cars/{car.Id}", car);
+    var carResult = await service.AddCar(req.Name, ct);
+
+    return carResult.Match(
+        car => Results.Created($"cars/{car.Id}", car),
+        error =>
+        {
+            if (error.ErrorType == ErrorType.BusinessRule)
+                return Results.Conflict(error);
+
+            return Results.BadRequest(error);
+        });
 });
 
 app.Run();
